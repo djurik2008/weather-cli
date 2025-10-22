@@ -1,19 +1,19 @@
 export const getArgs = (args) => {
   const res = {};
+  const [, , ...rest] = args;
 
-  const [executer, file, ...rest] = args;
-
-  rest.forEach((val, idx, arr) => {
-    if (val.charAt(0) === "-") {
-      if (idx === arr.length - 1) {
-        res[val.substring(1)] = true;
-      } else if (arr[idx + 1].charAt(0) != "-") {
-        res[val.substring(1)] = arr[idx + 1];
+  for (let i = 0; i < rest.length; i++) {
+    const arg = rest[i];
+    if (arg.startsWith("-")) {
+      const next = rest[i + 1];
+      if (next && !next.startsWith("-")) {
+        res[arg.substring(1)] = next;
+        i++;
       } else {
-        res[val.substring(1)] = true;
+        res[arg.substring(1)] = true;
       }
     }
-  });
+  }
 
   return res;
 };
