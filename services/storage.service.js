@@ -35,3 +35,8 @@ const isExist = async (path) => {
     return false;
   }
 };
+
+export const TOKEN_DICTIONARY = {
+  token: "token",
+  city: "city",
+};
