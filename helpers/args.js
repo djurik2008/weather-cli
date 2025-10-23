@@ -4,6 +4,7 @@ export const getArgs = (args) => {
 
   for (let i = 0; i < rest.length; i++) {
     const arg = rest[i];
+
     if (arg.startsWith("-")) {
       const next = rest[i + 1];
       if (next && !next.startsWith("-")) {
