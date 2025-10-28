@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 import { getArgs } from "./helpers/args.js";
-import { printHelp, printError, printSucess } from "./services/log.service.js";
+import {
+  printHelp,
+  printError,
+  printSucess,
+  printWeather,
+} from "./services/log.service.js";
 import { saveKeyValue, getKeyValue } from "./services/storage.service.js";
 import { TOKEN_DICTIONARY } from "./services/storage.service.js";
 import { getWeather } from "./services/api.service.js";
@@ -58,7 +63,7 @@ const getForcast = async () => {
   }
   try {
     const weather = await getWeather(city);
-    console.log(weather);
+    printWeather(weather);
   } catch (e) {
     if (e?.response?.status === 404) {
       printError("Помилка! Місто не знайдено обо вказано неправильно.");
